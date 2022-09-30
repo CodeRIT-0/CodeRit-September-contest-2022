@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define loop(s,e)       for(int i=s; i<=e; i++)
+#define ff              first
+#define ss              second
+#define ld              long double
+#define ll              long long int
+#define mod             1000000007
+#define vll             vector<ll>
+#define vi             vector<int>
+#define pll             pair<ll, ll>
+#define pi             pair<int, int>
+#define uom             unordered_map
+#define uos             unordered_set
+#define mxh             priority_queue<ll>
+#define ull             unsigned long long
+#define INF             9223372036854775807
+#define mnh             priority_queue<ll, vector<ll>, greater<ll>>
+#define endl            "\n"
+#define Endl            "\n"
+#define w(t)            ll tests;    cin>>tests;        while(tests--)
+#define pb(x)           push_back(x)
+#define ppb()           pop_back()
+#define all(x)          x.begin(), x.end()
+#define set1(x)         __builtin_popcount(x)
+#define mp(a, b)        make_pair(a, b)
+#define setp(x, y)      fixed << setprecision(x) << y
+
+void init_code(){
+    ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+}
+
+bool isValid(ll mid,vll &v,ll k){
+    ll cnt=0;
+    for(auto ele:v){
+        cnt+=(mid/ele);
+    }
+    if(cnt>=k) return 1;
+    return 0;
+}
+
+int main(){
+//    init_code();
+
+    ll n,k;cin>>n>>k;
+    vll v(n);
+    for(ll i=0;i<n;i++) cin>>v[i];
+    
+    ll lo = 0,hi = v[0]*k;
+    ll ans=hi;
+
+    while(lo<=hi){
+        ll mid = (hi-lo)/2+lo;
+        if(isValid(mid,v,k)){
+            ans=mid;
+            hi=mid-1;
+        }else lo=mid+1;
+    }
+
+    cout<<ans<<endl;
+    return 0;
+}
