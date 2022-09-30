@@ -1,0 +1,78 @@
+This is an *easy* level question , which requires you to just *Read The Problem Statement Thoroughly*. 
+
+It is pretty obvious that the swing's actual movement willl be in the direction in which the weight is more. 
+
+But.....
+
+The twist is that you need to print the *Opposite* Direction.
+
+As the question states
+
+you need to print *Left* if the Swing Moves *Right* and the vice-versa case.
+
+We print the same direction only in case that the swing is *Balanced*
+
+The Implementations are as follows
+
+**C++ :**
+cpp20
+#include <iostream>
+using namespace std;
+
+
+int main() {
+    long int a,b;
+    cin>>a>>b;
+    if(a<b){
+        cout<<"Left"<<endl;
+    }
+    else if(a>b){
+        cout<<"Right"<<endl;
+    }
+    else{
+        cout<<"Balanced"<<endl;
+    }
+    return 0;
+}
+
+
+
+*PYTHON :*
+
+python3
+s=input()
+a,b=s.split()
+a=int(a)
+b=int(b)
+if a<b:
+    print("Left")
+elif a>b:
+    print("Right")
+else:
+    print("Balanced")
+
+
+*Java :*
+
+java15
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        long a,b;
+        Scanner sc =new Scanner(System.in);
+        a=sc.nextLong();
+        b=sc.nextLong();
+        if(a>b){
+            System.out.println("Right");
+        }
+        else if(a<b){
+            System.out.println("Left");
+        }
+        else{
+            System.out.println("Balanced");
+        }
+    }
+}
