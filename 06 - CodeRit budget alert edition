@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    int n,m;
+    cin>>n>>m;
+    vector<int> budget(n), currencies(m);
+    for (int &x: budget) cin>>x;
+    for (int &x: currencies) cin>>x;
+    vector<pair<int, int>> dp(1<<m, {0, 0});
+    for (int s=0; s<(1<<m); s++){
+        for (int i=0; i<m; i++){
+            if (s&(1<<i)){
+                if(dp[s^(1<<i)].first == n) dp[s]={n, 0};
+                else if(dp[s^(1<<i)].second+currencies[i] == budget[dp[s^(1<<i)].first] && dp[s^(1<<i)].first+1 > dp[s].first)
+                    dp[s]={dp[s^(1<<i)].first+1, 0};
+                else if(dp[s^(1<<i)].first >= dp[s].first)
+                    dp[s]={dp[s^(1<<i)].first, dp[s^(1<<i)].second+currencies[i]};
+            }
+        }
+    }
+    cout<<((dp[(1<<m)-1].first==n)?"YES\n":"NO\n");
+    return 0;
+}
